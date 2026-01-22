@@ -1,0 +1,41 @@
+{
+    "Orders": [
+        {
+            "customerAddress": "From Counter",
+            "orderID": "046554",
+            "totalPrice": 7.75,
+            "drinkList": [{
+                "size": 3,
+                "price": 7.75,
+                "drinkCode": 5
+            }],
+            "isDone": true,
+            "customerName": "Roxx"
+        },
+        {
+            "customerAddress": "From Counter",
+            "orderID": "033962",
+            "totalPrice": 18.25,
+            "drinkList": [
+                {
+                    "size": 3,
+                    "price": 6.25,
+                    "drinkCode": 6
+                },
+                {
+                    "size": 3,
+                    "price": 7.25,
+                    "drinkCode": 3
+                },
+                {
+                    "size": 1,
+                    "price": 4.75,
+                    "drinkCode": 4
+                }
+            ],
+            "isDone": true,
+            "customerName": "Ravii"
+        }
+    ],
+    "Date": "20260122"
+}

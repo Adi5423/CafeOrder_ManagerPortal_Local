@@ -1,29 +1,28 @@
-# CoffeeShop Order System - Quick Run Script
-# This script compiles and runs the application
+# CoffeeShop Professional - Quick Run Script
+# This script compiles and runs the modernized application
 
-Write-Host "=====================================" -ForegroundColor Cyan
-Write-Host "  CoffeeShop Order System" -ForegroundColor Cyan
-Write-Host "=====================================" -ForegroundColor Cyan
-Write-Host ""
+Write-Host "===========================" -ForegroundColor Cyan
+Write-Host " CoffeeShop Professional v2" -ForegroundColor Cyan
+Write-Host "===========================" -ForegroundColor Cyan
 
-# Compile
-Write-Host "Compiling Java files..." -ForegroundColor Yellow
-javac -d out -cp "lib/*;src" -encoding UTF-8 src/main/model/*.java src/main/persistence/*.java src/main/ui/*.java
+$outDir = "out/production/Project-Starter"
+$libPath = "lib/*"
+$srcPath = "src"
 
-# Check if compilation succeeded
-if ($LASTEXITCODE -eq 0) {
-    Write-Host "✓ Compilation successful!" -ForegroundColor Green
-    Write-Host ""
-    Write-Host "Starting application..." -ForegroundColor Yellow
-    Write-Host ""
-    
-    # Run the application
-    java -cp "out/production/Project-Starter;lib/*" ui.Main
-    
-    # When application closes, show event log
-    Write-Host ""
-    Write-Host "Application closed." -ForegroundColor Yellow
-} else {
-    Write-Host "✗ Compilation failed! Please check the errors above." -ForegroundColor Red
+if (!(Test-Path $outDir)) {
+    New-Item -ItemType Directory -Path $outDir -Force | Out-Null
+}
+
+Write-Host "Compiling..." -ForegroundColor Yellow
+$proc = Start-Process javac -ArgumentList "-d", $outDir, "-cp", $libPath, "-sourcepath", $srcPath, "-encoding", "UTF-8", "src/com/coffee/Main.java" -Wait -NoNewWindow -PassThru
+
+if ($proc.ExitCode -eq 0) {
+    Write-Host "Success! Launching..." -ForegroundColor Green
+    $cp = "$outDir;lib/*"
+    java -cp $cp com.coffee.Main
+    Write-Host "Done." -ForegroundColor Yellow
+}
+else {
+    Write-Host "Error: Compilation failed." -ForegroundColor Red
     exit 1
 }
